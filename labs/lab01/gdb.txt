@@ -1,0 +1,9 @@
+1. I never set arguments
+2. break main
+3. next
+4. step
+5. continue
+6. print count : to print current value of variable count
+7. display i : to display value of variable i on every step
+8. info locals
+9. quit

@@ -1,0 +1,33 @@
+Exercise 1:
+1.
+    add t1, s0, x0      # load the address of the array of current node into t1
+explanation: s0 contains the address of the node, to load the address of array into t1 you need to dereference s0
+    lw t1, 0(s0)
+2. 
+    add t1, t1, t0      # offset the array address by the count
+explanation: must multiply t0 by 4 to traverse integer array
+    slli t3, t0, 2
+    add t1, t1, t3
+
+3.
+    jalr s1             # call the function on that value.
+explanation: called the function addressed by s1 without storing important t registers t0, t1 and t2
+    addi sp, sp, -12    # before the call
+    sw t0, 0(sp)
+    sw t1, 4(sp)
+    sw t2, 8(sp)
+    # call the function
+    lw t0, 0(sp)
+    lw t1, 4(sp)
+    lw t2, 8(sp)
+    addi sp, sp, 12     # after the call
+
+4.
+    la a0, 8(s0)        # load the address of the next node into a0
+explanation: using wrong mnemonic (i.e. la) to load value from memory
+    lw a0, 8(s0)
+
+5.
+    lw a1, 0(s1)        # put the address of the function back into a1 to prepare for the recursion
+explanation: s1 contains directly the address of the function, no need to dereference it
+    add a1, s1, x0
