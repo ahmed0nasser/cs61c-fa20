@@ -1,0 +1,15 @@
+Exercise 1:
+-----------
+adder block delay = 45ns
+multiplication block delay = 60ns
+register CLK-to-Q delay = 10ns
+setup time = 10ns
+hold time = 5ns
+
+CL delay = multiplication delay + adder delay = 105ns  
+maximum clock rate = CLK-to-Q delay + CL delay + setup time = 1/125ns
+
+Exercise 2:
+-----------
+CL delay = max(multiplication delay, adder delay) = 60ns 
+maximum clock rate = CLK-to-Q delay + CL delay + setup time = 1/80ns
