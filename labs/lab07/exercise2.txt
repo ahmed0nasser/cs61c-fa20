@@ -1,8 +1,8 @@
-1.
-2.
+1. jki,kji (4,6)
+2. ikj,kij (2,5)
 
 --- lines below are ignored by the AG ---
 
-Checkoff Question 1:
-Checkoff Question 2:
-Checkoff Question 3:
+Checkoff Question 1: because both of them highly optimizes spatial locality (strides A,B,C = 1,0,1) and temporal locality (A is cached and accessed n^2 times)
+Checkoff Question 2: both of them badly utilizes spatial locality (A,B,C = 0,n,n)
+Checkoff Question 3: large strides leads to high cache miss rate while small strides utilizes spaital locality and increases performance
