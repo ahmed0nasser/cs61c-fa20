@@ -1,24 +1,39 @@
 Scenario 1
-    1.
-    2.
-    3.
+cache:
+------
+levels = 1
+block_size = 8 bytes = 2 words
+blocks_num = 4
+cache_size = 32 bytes = 8 words
+direct mapped - lru
+tag = 27 , index = 2 , offset = 3
+sim:
+------
+array_size = 128 bytes =  32 words
+step_size = 8
+rep_count = 4
+option = 0 (W)
+    1. Hit rate = 0% ; step_size,cache_size: because step_size in bytes is exactly equal to cache_size in bytes.
+    2. Hit rate = 0; CQ1
+    3. step_size,1 => HR = 50% ; CQ2
 
 Scenario 2
-    1.
-    2.
-    3.
+    1. 48 memory access (every 2 steps we have read and two writes) 64 accesses in general
+    2. MHHH ; CQ3
+    3. HR approaches 100% ; CQ4
 
 Scenario 3
-    1.
-    2.
-    3.
-    4.
-    5.
+    1. 0.5, 0, 0.33
+    2. 32 accesses, 16 misses
+    3. 16 accesses
+    4. rep_count ; CQ6
+    5. =,=,+,=
 
 --- lines below are ignored by the AG ---
 
-Checkoff Question 1:
-Checkoff Question 2:
-Checkoff Question 3:
-Checkoff Question 4:
-Checkoff Question 5:
+Checkoff Question 1: rep_count does not matter as long as step_size = cache_size and cache is direct-mapped so every step would require replacement of the same block
+Checkoff Question 2: step_size and option = 1 (RW) => HR = 50%
+Checkoff Question 3: first word read is always a compulsory miss so a block(4 words) containing required word (word 0) is cached, then we write to word 0 (hit) and read & write word 3 (hit hit). HR = 75%, MR = 25%
+Checkoff Question 4: HR -> 100% because every array access is now cached from previous repetitions since we have enough cache to save the whole array and the only remaining misses are the compulsory ones.
+Checkoff Question 5: we use loop tiling or blocking and apply all rep functions to a block(chunk) of the array equals our cache size then go to the next block.
+Checkoff Question 6:  L2 cached the array from first rep, so in the subsequent reps all accesses to L2 are hits while L1_HR remains the same.
