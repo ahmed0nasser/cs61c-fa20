@@ -1,20 +1,50 @@
 --- not autograded ---
 
 Part 1
-    blocksize = 20, n = 100: 
-    blocksize = 20, n = 1000: 
-    blocksize = 20, n = 2000: 
-    blocksize = 20, n = 5000: 
-    blocksize = 20, n = 10000: 
+    blocksize = 20, n = 100:
+Testing naive transpose: 0.006 milliseconds
+Testing transpose with blocking (4 for): 0.004 milliseconds
+Testing transpose with blocking (residual): 0.005 milliseconds
+    blocksize = 20, n = 1000:
+Testing naive transpose: 0.924 milliseconds
+Testing transpose with blocking (4 for): 0.579 milliseconds
+Testing transpose with blocking (residual): 0.545 milliseconds
+    blocksize = 20, n = 2000:
+Testing naive transpose: 4.405 milliseconds
+Testing transpose with blocking (4 for): 4.387 milliseconds
+Testing transpose with blocking (residual): 4.027 milliseconds
+    blocksize = 20, n = 5000:
+Testing naive transpose: 38.934 milliseconds
+Testing transpose with blocking (4 for): 31.694 milliseconds
+Testing transpose with blocking (residual): 27.455 milliseconds
+    blocksize = 20, n = 10000:
+Testing naive transpose: 180.582 milliseconds
+Testing transpose with blocking (4 for): 129.756 milliseconds
+Testing transpose with blocking (residual): 122.958 milliseconds
 
-    Checkoff Question 1:
-    Checkoff Question 2:
+    Checkoff Question 1: at blocksize = 20, n = 1000
+    Checkoff Question 2: cache needs to warm up overcome compulsory misses in the blocking version in order to benefit from spatial & temporal locality and outperform the naive one
 
 Part 2
     blocksize = 50, n = 10000:
+Testing naive transpose: 176.391 milliseconds
+Testing transpose with blocking (4 for): 122.03 milliseconds
+Testing transpose with blocking (residual): 172.134 milliseconds
     blocksize = 100, n = 10000:
+Testing naive transpose: 185.087 milliseconds
+Testing transpose with blocking (4 for): 128.017 milliseconds
+Testing transpose with blocking (residual): 156.822 milliseconds
     blocksize = 500, n = 10000:
+Testing naive transpose: 177.896 milliseconds
+Testing transpose with blocking (4 for): 138.492 milliseconds
+Testing transpose with blocking (residual): 149.23 milliseconds
     blocksize = 1000, n = 10000:
+Testing naive transpose: 178.869 milliseconds
+Testing transpose with blocking (4 for): 146.251 milliseconds
+Testing transpose with blocking (residual): 145.388 milliseconds
     blocksize = 5000, n = 10000:
+Testing naive transpose: 188.518 milliseconds
+Testing transpose with blocking (4 for): 207.769 milliseconds
+Testing transpose with blocking (residual): 208.063 milliseconds
 
-    Checkoff Question 3:
+    Checkoff Question 3: naive impl is not affected, blocking impl performance degrades as blocksize increases, because cached data are re-accessed less,hence poor utilization of spatial/temporal locality, as n/blocksize ratio decreases.
