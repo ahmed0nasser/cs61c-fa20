@@ -1,0 +1,21 @@
+- PCSel: which value should be writted to PC on next clock tick: 0 for PC+4, 1 for ALU
+- ImmSel: generated imm starting from 0 i.e I=0 and so on: I,S,SB,U,UJ
+- ASel: first ALU input: 0 for Reg, 1 for PC
+- BSel: second ALU input: 0 for Reg, 1 for Imm
+- ALUSel:
+0	add: Result = A + B
+1	and: Result = A & B
+2	or:  Result = A
+3	xor: Result = A ^ B
+4	srl: Result = (unsigned) A >> B
+5	sra: Result = (signed) A >> B
+6	sll: Result = A << B
+7	slt: Result = (A < B (signed)) ? 1 : 0
+8	Unused
+9	Unused
+10	mul: Result = (signed) (A * B)[31:0]
+11	mulhu: Result = (A * B)[63:32]
+12	sub: Result = A - B
+13	bsel: Result = B
+14	mulh: Result = (signed) (A * B)[63:32]
+- WBSel: which value should be written to rd, 0 for mem, 1 for ALU, 2 for PC+4

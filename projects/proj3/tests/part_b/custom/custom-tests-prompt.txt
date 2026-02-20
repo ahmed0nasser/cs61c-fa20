@@ -1,0 +1,60 @@
+Write exhaustive riscv programs to test my riscv 2-stage pipelined cpu that can execute the following instructions.
+
+Hints:
+- Tests fall into 3 main categories: unit tests, integration tests, and edge case tests.
+
+- Unit tests: a unit test exercises your datapath with a single instruction, to make sure that each individual instruction has been implemented and is working as expected. You should write a different unit test for every single instruction that you need to implement, and make sure that you test the spectrum of possibilities for that instruction thoroughly. For example, a unit test slt should contain cases where rs1 < rs2, rs1 > rs2, and where rs1 == rs2.
+
+- Integration tests: After you’ve passed your unit tests, move onto tests that use multiple functions in combination. Try out various simple RISC-V programs that run a single function; your CPU should be able to handle them, if working properly. Feel free to try to use riscv-gcc to compile C programs to RISC-V, but be aware of the limited instruction set we’re working with (you don’t have any ecall instructions, for example). We’d recommend that you instead try to write simple functions on your own based on what you’ve seen in labs, discussions, projects, and exams.
+
+- Edge case tests: edge case tests try inputs that you normally wouldn’t expect, which may trigger bugs in certain situations. What edge cases should you look for? A small hint from us: our 2 main classes of edge cases come from memory operations and branch/jump operations (some of the test names are “mem-full” and “br-jump-edge”). Think about all the different ways these operations could go wrong.
+
+- If you make many short test files rather than one large one, it will be easier to figure out which test and which line causes your Syntax Error (and to figure out where your CPU is failing). We’d recommend that for unit testing, where you have one .s file testing each instruction.
+
+- Make sure you test every single instruction in the ISA, including the ones that are covered by the sanity tests; feel free to use the sanity tests as a model or even incorporate them as part of your test suite.
+
+- Make sure you check that all registers are working.
+
+- Make sure you don’t have any “dummy” tests; if a test doesn’t lead to a change in state or register value, it is not a meaningful test.
+
+- Make sure that you accumulate outputs into the special registers we output to the testharness, other registers will not be checked against. These registers are: x0, ra, sp, t0, t1, t2, s0, s1, and a0.
+
+Instructions:
+add
+mul
+sub
+sll
+mulh
+mulhu
+slt
+xor
+srl
+sra
+or
+and
+lb
+lh
+lw
+addi
+slli
+slti
+xori
+srli
+srai
+ori
+andi
+sb
+sh
+sw
+beq
+bne
+blt
+bge
+bltu
+bgeu
+auipc
+lui
+jal
+jalr
+csrw
+csrwi
