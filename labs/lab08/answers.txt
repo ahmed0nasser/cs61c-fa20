@@ -1,10 +1,12 @@
+Generated address reference string for Ex. 1:
+ED, 6E, 59, 66, 06, C0, 28, FD, B8, 94
 Exercise 1:
-    1.
-    2.
-    3.
+    1. 8
+    2. 1, 9, 0, 9
+    3. no (TLB's size = physical pages thus, for any access, translation is handled by the TLB or there is a page fault), no
 
 Exercise 2:
-    1.
+    1. ED, 6E, 59, A6, 06, C0, 28, FD, B8, 94
 
 Exercise 3:
     1.
@@ -12,8 +14,8 @@ Exercise 3:
 --- lines below are ignored by the AG ---
 
 Exercise 1 Checkoff Questions:
-    1.
-    2.
+    1. we divide the virtual address into VPN[7:5]|offset[4:0], if TLB has an entry for our VPN, then we get the translation (PPN), if not, then it is TLB miss so we look for this entry in the page table if it exists and valid we put this translation entry in TLB and get PPN, if not there is a page fault and we need to move this page from disk to memory filling this entry in our page table and TLB. in any case we get PPNso we can construct our physical address PPN|offset which we use the access the memory.
+    2. physical address has two bits because our memory can store up to 4 pages only compared to 8 pages in virtual address as it extends to the disk as well thus virtual memory is larger than physical one.
 
 Exercise 4 Checkoff Question:
     1.
