@@ -252,14 +252,19 @@ void serve_forever(int *socket_number) {
       pid_t parent_pid = getpid();
 #ifdef PROC
       // PART 2 TASK: Implement forking
-      /* YOUR CODE HERE */
+      pid_t child_pid = fork();
 
-      if (/* YOUR CODE HERE */) {
+      if (child_pid == -1) {
+         /* fork() failed — log, close the fd, and keep serving. */
+         perror("fork failed");
+         close(client_socket_number);
+         continue;
+      }
+
+      if (child_pid == 0) {
          // This line kills the child process if parent dies
          int r = prctl(PR_SET_PDEATHSIG, SIGTERM);
 
-         /* YOUR CODE HERE */
-         
          // These lines exit the current process with code 1 
          // 1) when there was an error in prctl, 2) when the parent has been killed
          if (r == -1 || getppid() != parent_pid) {
@@ -267,10 +272,20 @@ void serve_forever(int *socket_number) {
             exit(1);
          }
 
-         /* YOUR CODE HERE */
+         dispatch(client_socket_number);
+         close(client_socket_number);
+         exit(0);
+      } else {
+         /* ---- Parent process ---- */
+
+         /* CRITICAL FIX: close parent's copy of the client fd.
+          * Without this, the fd leaks once per accepted connection. */
+         close(client_socket_number);
       }
+
 #else
       dispatch(client_socket_number);
+      close(client_socket_number);
 #endif
    }
 }
